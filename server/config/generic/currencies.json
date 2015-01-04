@@ -1,0 +1,14 @@
+[
+  {
+    "name": "GBP",
+    "country_code": "UK",
+    "description": "British Pound (£)",
+    "symbol": "£"
+  },
+  {
+    "name": "USD",
+    "country_code": "US",
+    "description": "U.S. dollar ($)",
+    "symbol": "$"
+  }
+]

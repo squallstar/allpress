@@ -1,0 +1,54 @@
+#!/usr/bin/env node
+require('coffee-script/register');
+
+var config = require('../libs/config');
+var cluster = require('express-cluster');
+
+if (config.ssl && config.port_ssl) {
+  var http = require('http');
+  var https = require('https');
+  var fs = require('fs');
+  var ssl_options = {
+    ca: fs.readFileSync(__dirname + '/../config/ssl/bundle.crt'),
+    key: fs.readFileSync(__dirname + '/../config/ssl/server.key'),
+    cert: fs.readFileSync(__dirname + '/../config/ssl/domain.crt')
+  };
+
+  var redirector_started = false;
+
+  cluster(function(worker) {
+    if (worker.id == 1) {
+      redirector_started = true;
+      // Create a default HTTP server to redirect all reqs to HTTPS
+      http.createServer(function (req, res) {
+        if (req.url.indexOf('/') === 0) {
+          req.url = req.url.substr(1);
+        }
+
+        res.writeHead(301, {
+          Location: config.host.replace('http:', 'https:') + req.url
+        });
+        res.end();
+      }).listen(config.port, config.interface, function() {
+        console.log('[HTTP] Server Redirector started on port ' + config.port);
+      });
+    }
+
+    var app = require('../app');
+    app.set('port', config.port_ssl);
+
+    https.createServer(ssl_options, app).listen(config.port_ssl, config.interface, function() {
+      console.log('[HTTPS] Server Worker #' + worker.id + ' spawned on port ' + config.port_ssl);
+    });
+  }, {count: config.workers});
+} else {
+  // Cluster HTTP servers
+  cluster(function(worker) {
+    var app = require('../app');
+    app.set('port', config.port);
+
+    app.listen(config.port, config.interface, function() {
+      console.log('[HTTP] Server Worker #' + worker.id + ' spawned on port ' + config.port);
+    });
+  }, {count: config.workers});
+}

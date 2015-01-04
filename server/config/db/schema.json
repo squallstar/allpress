@@ -1,0 +1,16 @@
+{
+  "indexes": {
+    "categories": [
+      [{"name": 1}, {"unique": true}]
+    ],
+    "cities": [
+      [{"location": "2dsphere"}]
+    ],
+    "users": [
+      [{"created_at": -1}],
+      [{"auth_token": 1}, {"unique": true, "sparse": true}],
+      [{"optin_token": 1}, {"unique": true, "sparse": true}],
+      [{"email": 1}, {"unique": true}]
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "host": "http://staging.example.org/",
+  "interface": "0.0.0.0",
+  "port": 80,
+  "workers": 2,
+  "proxy": false,
+  "admin": {
+    "username": "admin",
+    "password": "password"
+  },
+  "database": {
+    "path": "localhost:27017/example-staging"
+  },
+  "google": {
+    "api_key": "your-api-key-here"
+  },
+  "mailchimp": {
+    "api_key": "your-api-key-here"
+  },
+  "mailer": {
+    "from": "[DEV] Example <hello@example.org>",
+    "email": "hello@example.org",
+    "password": "password",
+    "host": "mail.example.org"
+  },
+  "internal_mailer": {
+    "from": "[DEV] Example <hello@example.org>",
+    "email": "hello@example.org",
+    "password": "password",
+    "host": "mail.example.org"
+  },
+  "facebook": {
+    "app_id": "your-app-id-here",
+    "app_secret": "your-app-secret-here"
+  },
+  "foursquare": {
+    "app_id": "your-app-id-here",
+    "app_secret": "your-app-secret-here"
+  },
+  "amazon": {
+    "consumer_key": "your-consumer-key-here",
+    "consumer_secret": "your-consumer-secret-here",
+    "region": "eu-central-1",
+    "bucket": "your-bucket-name"
+  },
+  "stripe": {
+    "secret_key": "your-secret-key-here",
+    "public_key": "your-public-key-here"
+  }
+}

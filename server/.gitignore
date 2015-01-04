@@ -1,0 +1,5 @@
+node_modules/
+*.log
+logs/*.txt
+public/css/*.css
+public/js/*.js
