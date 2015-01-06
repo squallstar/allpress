@@ -4,7 +4,6 @@ validator = require('validator')
 
 router.get "/", (req, res) ->
   res.render 'website/home',
-    className: 'landing'
     title: 'Welcome'
 
 # --------------------------------------------------------------------------
