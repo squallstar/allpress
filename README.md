@@ -45,16 +45,16 @@ This is my personal Node.js Express development setup for production composed as
 
 ## Run for development
 
-    $ DEBUG=api ./bin/www
+    $ ./server/bin/www
 
-You will also need to run grunt to compile and watch sass files:
+You will also need to run grunt (on another tab) to compile and watch sass files:
 
     $ grunt
 
 ## Run for production with forever
 
     $ grunt precompile
-    $ NODE_ENV=production forever start ./api/bin/www
+    $ NODE_ENV=production forever start ./server/bin/www
 
 ## Run the tests
 
