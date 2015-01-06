@@ -1,7 +1,7 @@
 {
-  "name": "ryoko-api",
-  "version": "0.0.0",
-  "private": true,
+  "name": "allpress",
+  "version": "1.0.0",
+  "private": false,
   "scripts": {
     "start": "node ./bin/www",
     "test": "node_modules/mocha/bin/mocha test/run.js"
